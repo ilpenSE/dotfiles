@@ -162,7 +162,7 @@ kp() {
   local db="${1:-$HOME/ŞİFRELER.kdbx}"
   [[ -f "$db" ]] || { echo "Böyle bir dosya yok: $db"; return 1; }
 
-  read -s -p "Şifre (boş bırak = GUI): " pw
+  read -s -p "Database Şifresi (boş bırak = GUI): " pw
   echo
 
   if [[ -z "$pw" ]]; then
