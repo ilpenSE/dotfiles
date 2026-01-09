@@ -31,3 +31,11 @@ S-d (D) -> direkt siler, requestsiz (yes/no soruyor ama)
 S-c (C) -> seçili dosya/klasörü kopyalar (hedef soruyor)
 S-r (R) -> seçili dosya/klasörde mv
 S-t (T) -> yeni dosya oluşturur (isim sorar)
+
+Magit
+C-x g ile magit açılır
+s: bir dosyayı stage'le (git add)
+u: bir dosyayı unstage'le
+c: commit
+P p (S-p p): push'la
+P (S-p): push menüsüP
