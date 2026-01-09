@@ -1,0 +1,9 @@
+# emacs cache and autosaves etc.
+.emacs.d/autosaves
+.emacs.d/backups
+.emacs.d/eln-cache
+.emacs.d/auto-save-list/
+.emacs.d/elpa
+
+# for accidents
+.env

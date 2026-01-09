@@ -1,0 +1,33 @@
+C: Ctrl, S: Shift
+
+C-x C-s gibi Ctrl'ye basılı tutarak x ve s'ye bas demektir,
+C-x s ise Ctrl'ye basılı tutarak x'e bas, Ctrl'yi bırak ve s'ye bas demektir
+
+:wq -> C-c j
+:q! -> C-x C-j
+:w -> C-x C-s
+
+C-x C-j -> mevcut dosyayı kaydetme, o dosyanın bulunduğu dir'de dired'e dön (dired jump)
+C-x C-s -> mevcut dosyayı kaydet (save)
+M-x -> komut yaz (dired gibi)
+M-! -> bash komutları yaz
+^ -> diredde geri gel (.. işlevi)
+C-x k -> bufferı öldür (isim gir)
+C-x d -> diredi açar
+C-x C-k -> mevcut bufferı direkt öldür
+C-c j -> save + dired jump
+C-x 0 -> mevcut split windowu kapat
+C-x 1 -> diğerlerini kapat, bunu bırak (split window)
+C-x C-b -> bufferları yeni bir split windowda listele (M-x buffer-menu)
+C-x b -> buffera geç (isim gir)
+C-k -> o line içinde cursordan sağa doğru her şeyi sil (en sondaki \n hariç)
+C-S-Backspace -> satırı direkt siler (\n'ı da dahil)
+
+Dired:
+d -> seçili dosya/klasörü deletion request'lerine atar
+x -> deletion request'leri direkt siler
++ -> yeni klasör oluştur
+S-d (D) -> direkt siler, requestsiz (yes/no soruyor ama)
+S-c (C) -> seçili dosya/klasörü kopyalar (hedef soruyor)
+S-r (R) -> seçili dosya/klasörde mv
+S-t (T) -> yeni dosya oluşturur (isim sorar)

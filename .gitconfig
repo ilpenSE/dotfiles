@@ -1,0 +1,7 @@
+[user]
+	name = ilpenSE
+	email = lastplayer8945@gmail.com
+[core]
+	editor = nvim
+[init]
+	defaultBranch = master
