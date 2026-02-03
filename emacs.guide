@@ -7,30 +7,59 @@ C-x s ise Ctrl'ye basılı tutarak x'e bas, Ctrl'yi bırak ve s'ye bas demektir
 :q! -> C-x C-j
 :w -> C-x C-s
 
-C-x C-j -> mevcut dosyayı kaydetme, o dosyanın bulunduğu dir'de dired'e dön (dired jump)
+C-x C-j -> mevcut dosyayı kaydetme, dired'e dön (dired jump)
 C-x C-s -> mevcut dosyayı kaydet (save)
+C-x s -> mevcut dosyayı farklı kaydet
+
 M-x -> komut yaz (dired gibi)
-M-! -> bash komutları yaz
-^ -> diredde geri gel (.. işlevi)
-C-x k -> bufferı öldür (isim gir)
-C-x d -> diredi açar
-C-x C-k -> mevcut bufferı direkt öldür
-C-c j -> save + dired jump
+M-! -> shell komutu yaz
+M-& -> async shell komutu yaz
+
+Window Yönetimi:
 C-x 0 -> mevcut split windowu kapat
 C-x 1 -> diğerlerini kapat, bunu bırak (split window)
+C-x 2 -> mevcut bufferın aşağıda split windowunu aç
+C-x 3 -> mevcut bufferın sağda split windowunu aç
+C-x o -> cursorı windowlar arası değiştir (focus değiştir) ve sürekli o basarak devam edebilirsin
+
+Buffer Yönetimi:
 C-x C-b -> bufferları yeni bir split windowda listele (M-x buffer-menu)
 C-x b -> buffera geç (isim gir)
-C-k -> o line içinde cursordan sağa doğru her şeyi sil (en sondaki \n hariç)
+C-x 4 b -> C-x b gibi isim sorup bufferı yeni bir split windowta açar
+C-x C-k -> mevcut bufferı direkt öldür
+C-x k -> isim sorarak bir bufferı öldür
+
+Kelime/Satır Silme:
+C-x k -> bufferı öldür (isim gir)
+C-x C-k -> mevcut bufferı direkt öldür
+C-k -> o line içinde cursordan sağa doğru her şeyi sil (satır sonunda değilse \n'i silmez)
+M-k -> ileriye doğru kelime siler (C-backspace'in ileri versiyonu)
+C-c d -> cursorın konumu değiştirmeden mevcut satırı kopyalar aşağıya doğru
 C-S-Backspace -> satırı direkt siler (\n'ı da dahil)
 
 Dired:
+^ -> diredde geri gel (.. işlevi)
+C-x d -> diredi açar
 d -> seçili dosya/klasörü deletion request'lerine atar
 x -> deletion request'leri direkt siler
 + -> yeni klasör oluştur
 S-d (D) -> direkt siler, requestsiz (yes/no soruyor ama)
 S-c (C) -> seçili dosya/klasörü kopyalar (hedef soruyor)
 S-r (R) -> seçili dosya/klasörde mv
-S-t (T) -> yeni dosya oluşturur (isim sorar)
+C-x C-q veya E veya S-e -> diredi writable yapar (rename, permission değiştirme vs yapılabilir)
+
+Multiple Cursors:
+C->: Aşağıya doğru cursor aç (> veya n'ye tekrar tekrar basarak devam ettir)
+C-<: Yukarı doğru cursor aç (< veya p'ye tekrar tekrar basarak devam ettir)
+C-S-m l: Bir alan seçiliyken orda birden fazla cursor aç
+C-S-m a: Bir lime grubu seçiliyken onla uyan her şeyi seç (tüm bufferda)
+C-S-m s: Akıllı seçme, kelime olarak seçer yani "i"yi seçtiğinde örneğin "in"i seçmez kelime olarak "i"yi seçer
+C-S-m p: En yukardaki cursorı atla ve bir sonrakine geç
+C-S-m n: En aşağıdaki cursorı atla ve bir sonrakine geç
+C-g: her şeyi iptal et, normal cursora geç
+
+NOT: C-> veya C-< de hem aşağı yukarı cursor açar hem C-S m a'daki gibi kelime grubu seçiliyse
+  onlarla uyuşan diğer kelimeleri seçer (next/previous farkı da var yani C-> sonrakileri seçer)
 
 Magit
 C-x g ile magit açılır
@@ -38,4 +67,4 @@ s: bir dosyayı stage'le (git add)
 u: bir dosyayı unstage'le
 c: commit
 P p (S-p p): push'la
-P (S-p): push menüsüP
+P (S-p): push menüsü

@@ -85,12 +85,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -119,6 +114,7 @@ fi
 alias la="ls -ah"
 alias ll="ls -lh"
 alias lla="ls -lah"
+alias c="clear"
 
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
@@ -162,7 +158,7 @@ kp() {
   local db="${1:-$HOME/ŞİFRELER.kdbx}"
   [[ -f "$db" ]] || { echo "Böyle bir dosya yok: $db"; return 1; }
 
-  read -s -p "Database Şifresi (boş bırak = GUI): " pw
+  read -s -p "Şifre (boş bırak = GUI): " pw
   echo
 
   if [[ -z "$pw" ]]; then
@@ -223,3 +219,6 @@ UZ() {
 export PATH="$PATH:$HOME/Qt/6.10.1/gcc_64/bin" # Qt Build Tools
 export PATH="$PATH:$HOME/Downloads/idea-IU-253.29346.138/bin" # IntelliJ IDEA
 export PATH="$PATH:$HOME/apache-maven-3.9.12/bin" # Apache Maven
+export PATH="$PATH:$HOME/.local/bin"
+
+. "$HOME/.cargo/env"
