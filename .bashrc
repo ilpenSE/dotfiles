@@ -115,6 +115,7 @@ alias la="ls -ah"
 alias ll="ls -lh"
 alias lla="ls -lah"
 alias c="clear"
+alias just-shutdown="sudo shutdown now"
 
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
@@ -222,3 +223,7 @@ export PATH="$PATH:$HOME/apache-maven-3.9.12/bin" # Apache Maven
 export PATH="$PATH:$HOME/.local/bin"
 
 . "$HOME/.cargo/env"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
