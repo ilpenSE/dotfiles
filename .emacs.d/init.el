@@ -65,11 +65,26 @@
 
 ;;; abbrev config
 (setq-default abbrev-mode nil)
+(add-hook 'after-change-major-mode-hook
+          (lambda ()
+            (abbrev-mode -1)))
 
 ;; whitespace mode, doesnt show newlines
 (global-whitespace-mode 1)
 (setq whitespace-style
       '(face tabs spaces tab-mark space-mark))
+
+;; company
+(use-package company
+  :ensure t
+  :init
+  (global-company-mode 1)
+  :custom
+  (company-idle-delay 0.2)
+  (company-minimum-prefix-length 2)
+  (company-frontends '(company-preview-if-just-one-frontend))  
+  :bind
+  ("M-/" . company-complete))
 
 ;; for minibuffer things
 (use-package vertico ;; vertical minibuffer
@@ -89,16 +104,6 @@
   (completion-category-defaults nil)
   (completion-category-overrides
    '((file (styles basic partial-completion)))))
-
-;; company
-(use-package company
-  :ensure t
-  :init
-  (global-company-mode)
-  :custom
-  (company-minimum-prefix-length 1)
-  (company-idle-delay 0.1)
-  (company-frontends '(company-preview-frontend)))
 
 (use-package exec-path-from-shell
   :ensure t
@@ -125,7 +130,7 @@
  '(custom-safe-themes
    '("01a9797244146bbae39b18ef37e6f2ca5bebded90d9fe3a2f342a9e863aaa4fd" default))
  '(package-selected-packages
-   '(move-text expand-region gruber-darker-theme eglot exec-path-from-shell orderless marginalia vertico which-key company lorem-ipsum flycheck yasnippet-snippets yasnippet multiple-cursors intel-hex-mode rust-mode haskell-mode markdown-mode cmake-mode magit)))
+   '(company move-text expand-region gruber-darker-theme eglot exec-path-from-shell orderless marginalia vertico lorem-ipsum flycheck yasnippet-snippets yasnippet multiple-cursors intel-hex-mode rust-mode haskell-mode markdown-mode cmake-mode magit)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
