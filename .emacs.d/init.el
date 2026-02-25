@@ -82,9 +82,8 @@
   :custom
   (company-idle-delay 0.2)
   (company-minimum-prefix-length 2)
-  (company-frontends '(company-preview-if-just-one-frontend))  
-  :bind
-  ("M-/" . company-complete))
+  (company-frontends '(company-preview-if-just-one-frontend))
+  (company-backends '(company-dabbrev-code company-keywords company-files)))
 
 ;; for minibuffer things
 (use-package vertico ;; vertical minibuffer
