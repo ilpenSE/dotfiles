@@ -41,7 +41,7 @@ M-v -> bi önceki sayfa (yukarıya doğru PageUp)
 C-k -> o line içinde cursordan sağa doğru her şeyi sil (satır sonunda değilse \n'i silmez)
 M-d -> ileriye doğru kelime siler (C-backspace'in ileri versiyonu)
 M-k -> ileriye doğru regionı siler (boş satıra gelene dek)
-C-c d -> cursorın konumu değiştirmeden mevcut satırı kopyalar aşağıya doğru
+M-ü -> cursorın konumu değiştirmeden mevcut satırı kopyalar aşağıya doğru
 C-S-Backspace -> satırı direkt siler (\n'ı da dahil)
 M-@ -> imleçten sonraki kelimeyi marklar (imlecin konumu değişmez)
 C-e -> satır sonuna git
@@ -71,9 +71,9 @@ C-x C-q veya E veya S-e -> diredi writable yapar (rename, permission değiştirm
 Multiple Cursors:
 C->: Aşağıya doğru cursor aç (> veya n'ye tekrar tekrar basarak devam ettir)
 C-<: Yukarı doğru cursor aç (< veya p'ye tekrar tekrar basarak devam ettir)
-C-S-m l: Bir alan seçiliyken orda birden fazla cursor aç
-C-S-m a: Bir lime grubu seçiliyken onla uyan her şeyi seç (tüm bufferda)
-C-S-m s: Akıllı seçme, kelime olarak seçer yani "i"yi seçtiğinde örneğin "in"i seçmez kelime olarak "i"yi seçer
+M-/: Bir alan seçiliyken orda birden fazla cursor aç
+M-*: Bir lime grubu seçiliyken onla uyan her şeyi seç (tüm bufferda)
+M-+: Akıllı seçme, kelime olarak seçer yani "i"yi seçtiğinde örneğin "in"i seçmez kelime olarak "i"yi seçer
 C-S-m p: En yukardaki cursorı atla ve bir sonrakine geç
 C-S-m n: En aşağıdaki cursorı atla ve bir sonrakine geç
 C-g: her şeyi iptal et, normal cursora geç

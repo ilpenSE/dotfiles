@@ -40,7 +40,7 @@
 (global-set-key (kbd "<f6>") #'recompile)
 
 (global-set-key (kbd "C-x C-k") 'kill-current-buffer)
-(global-set-key (kbd "C-c d") 'duplicate-line)
+(global-set-key (kbd "M-ü") 'duplicate-line)
 
 (global-set-key (kbd "C-z") #'undo)
 (global-set-key (kbd "C-S-z") #'undo-redo)

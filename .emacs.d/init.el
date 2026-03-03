@@ -20,6 +20,7 @@
 (load "my-dired")
 (load "keybindings")
 (load "mc")
+(load "simpc-mode")
 
 ;;; theme package
 (use-package gruber-darker-theme
@@ -28,7 +29,10 @@
   (load-theme 'gruber-darker t))
 
 ;;; visuals
-(set-face-attribute 'default nil :height 200)
+(set-face-attribute 'default nil
+                    :family "Iosevka"
+                    :height 220 ; punto * 10
+                    :weight 'regular)
 (cua-mode -1)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
@@ -73,6 +77,9 @@
 (global-whitespace-mode 1)
 (setq whitespace-style
       '(face tabs spaces tab-mark space-mark))
+
+;; always follow symlinks
+(setq vc-follow-symlinks t)
 
 ;; company
 (use-package company
@@ -129,7 +136,7 @@
  '(custom-safe-themes
    '("01a9797244146bbae39b18ef37e6f2ca5bebded90d9fe3a2f342a9e863aaa4fd" default))
  '(package-selected-packages
-   '(company move-text expand-region gruber-darker-theme eglot exec-path-from-shell orderless marginalia vertico lorem-ipsum flycheck yasnippet-snippets yasnippet multiple-cursors intel-hex-mode rust-mode haskell-mode markdown-mode cmake-mode magit)))
+   '(dotenv-mode markdown-preview-mode company move-text expand-region gruber-darker-theme eglot exec-path-from-shell orderless marginalia vertico lorem-ipsum flycheck yasnippet-snippets yasnippet multiple-cursors intel-hex-mode rust-mode haskell-mode markdown-mode cmake-mode magit)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

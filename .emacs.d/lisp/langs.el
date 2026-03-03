@@ -4,14 +4,40 @@
 ;; M-x treesit-install-language-grammar, and then type the language name
 (setq treesit-language-source-alist
       '(
-	      (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "v0.23.2" "typescript/src")
+        (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "v0.23.2" "typescript/src")
         (tsx        "https://github.com/tree-sitter/tree-sitter-typescript" "v0.23.2" "tsx/src")
-	      (javascript "https://github.com/tree-sitter/tree-sitter-javascript" "v0.21.0" "src")
-	      ))
+        (javascript "https://github.com/tree-sitter/tree-sitter-javascript" "v0.21.0" "src")
+        ))
 
 (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js-ts-mode))
+
+(add-to-list 'auto-mode-alist '("\\Makefile.win\\'" . makefile-gmake-mode))
+
+;; simpc mode
+(require 'simpc-mode)
+(add-to-list 'auto-mode-alist '("\\.[hc]\\(pp\\)?\\'" . simpc-mode))
+
+(defun astyle-buffer ()
+  (interactive)
+  (let ((line (line-number-at-pos))
+        (col  (current-column)))
+    (call-process-region
+     (point-min)
+     (point-max)
+     "astyle"
+     t
+     (current-buffer)
+     nil
+     "--style=kr"
+     "--indent=spaces=2")
+    (goto-char (point-min))
+    (forward-line (1- line))
+    (move-to-column col)))
+(add-hook 'simpc-mode-hook
+          (lambda ()
+            (local-set-key (kbd "C-c C-f") #'astyle-buffer)))
 
 ;;; indent / tabs
 (setq-default indent-tabs-mode nil)
@@ -31,6 +57,7 @@
 ;; normal modes indents
 (setq c-basic-offset 2)
 (setq c-default-style "linux")
+(setq sh-indentation 2)
 (setq css-indent-offset 2)
 (setq sgml-basic-offset 2)
 (setq rust-indent-offset 2)
@@ -75,6 +102,8 @@
 (add-hook 'typescript-ts-mode-hook 'my-comment-style-hook)
 (add-hook 'python-mode-hook 'my-comment-style-hook)
 (add-hook 'sql-mode-hook 'my-comment-style-hook)
+
+(add-hook 'markdown-mode-hook (lambda () (eldoc-mode -1)))
 
 ;;; ts/js linter/autocomplete
 (use-package flycheck

@@ -1,11 +1,11 @@
 ;; mc config
 (use-package multiple-cursors
   :ensure t
-  :bind (("C-S-m l" . mc/edit-lines)
-         ("C-S-m a" . mc/mark-all-like-this)
+  :bind (("M-/"     . mc/edit-lines)
+         ("M-*"     . mc/mark-all-like-this)
          ("C->"     . mc/mark-next-like-this)
          ("C-<"     . mc/mark-previous-like-this)
-         ("C-S-m s" . mc/mark-all-symbols-like-this-in-defun)
+         ("M-+"     . mc/mark-all-symbols-like-this-in-defun)
          ("C-S-m n" . mc/skip-to-next-like-this)
          ("C-S-m p" . mc/skip-to-previous-like-this))
   :config

@@ -116,6 +116,8 @@ alias ll="ls -lh"
 alias lla="ls -lah"
 alias c="clear"
 alias just-shutdown="sudo shutdown now"
+alias just-reboot="sudo reboot now"
+alias clang-cl="clang --driver-mode=cl"
 
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
@@ -201,6 +203,11 @@ UZ() {
       mkdir "$f_name"
       tar -xvf "$1" -C "$f_name"
       ;;
+    "tar.xz")
+      echo "unzipping tar.xz to $f_name"
+      mkdir "$f_name"
+      tar -xf "$1" -C "$f_name"
+      ;;
     "gz")
       echo "unzipping gz to $f_name"
       mkdir "$f_name"
@@ -217,13 +224,23 @@ UZ() {
   esac
 }
 
+alias docker-set-permits="sudo chown -R ilpen:ilpen /home/ilpen/docker_data"
+
+alias psqlconn="psql \"postgresql://postgres:postgres@127.0.0.1:54322/postgres\""
+alias psqlrunq="PGPASSWORD=postgres psql -h 127.0.0.1 -p 54322 -U postgres -d postgres -f"
+
 export PATH="$PATH:$HOME/Qt/6.10.1/gcc_64/bin" # Qt Build Tools
 export PATH="$PATH:$HOME/Downloads/idea-IU-253.29346.138/bin" # IntelliJ IDEA
 export PATH="$PATH:$HOME/apache-maven-3.9.12/bin" # Apache Maven
 export PATH="$PATH:$HOME/.local/bin"
 
-. "$HOME/.cargo/env"
-
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# fnm
+FNM_PATH="/home/ilpen/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "`fnm env`"
+fi
