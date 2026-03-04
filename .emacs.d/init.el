@@ -92,16 +92,16 @@
   (company-frontends '(company-preview-if-just-one-frontend))
   (company-backends '(company-dabbrev-code company-keywords company-files)))
 
-;; for minibuffer things
-(use-package vertico ;; vertical minibuffer
-  :ensure t
-  :init
-  (vertico-mode))
-
-(use-package marginalia ;; minibuffer search suggestions
-  :ensure t
-  :init
-  (marginalia-mode))
+;; minibuf, find file etc. completion
+(require 'ido)
+(require 'smex)
+(ido-mode t)
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(setq ido-use-filename-at-point 'guess)
+(setq ido-create-new-buffer 'ask)
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
 
 (use-package orderless ;; smart search
   :ensure t
@@ -128,6 +128,8 @@
 ;; Then press C-c C-c, if it asks the mode, you just say c-mode or smth that in which mode do you want to use
 ;; that snippet and then save the file
 
+(require 'magit)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -136,7 +138,7 @@
  '(custom-safe-themes
    '("01a9797244146bbae39b18ef37e6f2ca5bebded90d9fe3a2f342a9e863aaa4fd" default))
  '(package-selected-packages
-   '(dotenv-mode markdown-preview-mode company move-text expand-region gruber-darker-theme eglot exec-path-from-shell orderless marginalia vertico lorem-ipsum flycheck yasnippet-snippets yasnippet multiple-cursors intel-hex-mode rust-mode haskell-mode markdown-mode cmake-mode magit)))
+   '(smex dotenv-mode markdown-preview-mode company move-text expand-region gruber-darker-theme eglot exec-path-from-shell orderless lorem-ipsum flycheck yasnippet-snippets yasnippet multiple-cursors intel-hex-mode rust-mode haskell-mode markdown-mode cmake-mode magit)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
