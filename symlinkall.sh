@@ -11,6 +11,7 @@ files=(
   ".zshrc"
   ".xprofile"
   ".dmrc"
+  ".p10k.zsh"
   ".nvidia-settings-rc"
   ".config/nvim/init.lua"
   ".config/xfce4/terminal/terminalrc"
