@@ -118,6 +118,8 @@ alias c="clear"
 alias just-shutdown="sudo shutdown now"
 alias just-reboot="sudo reboot now"
 alias clang-cl="clang --driver-mode=cl"
+alias ..="cd .."
+alias .="cd ."
 
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
@@ -248,3 +250,5 @@ if [ -d "$FNM_PATH" ]; then
   export PATH="$FNM_PATH:$PATH"
   eval "`fnm env`"
 fi
+
+clear
