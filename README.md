@@ -4,7 +4,7 @@ This config files are meant to be work on my machine
 
 ## Requirements
 
-![neofetch](https://github.com/user-attachments/assets/36c431d4-d638-4068-8c5c-a5ed2ea93199)
+<img width="1920" height="1080" alt="neofetch and emacs" src="https://github.com/user-attachments/assets/a4230a63-15e1-47af-8661-af9257bf3db5" />
 
 - X86_64 (amd64) CPU Architecture
 - GNU/Linux (Linux Mint Xfce 22.3)
