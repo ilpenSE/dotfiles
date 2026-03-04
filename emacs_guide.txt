@@ -55,6 +55,7 @@ NOT: avy modeda region marklıysa o regionda bir şeyler yazıp override edemezs
 M-u: kelimeyi uppercase yapar
 M-l: kelimeyi lowercase yapar
 M-c: kelimeyi capitalize yapar (ilk harf upper gerisi lower)
+M-=: seçili region hakkında bilgi verir (lines, sentences, words, chars)
 
 IDO:
 C-f: IDO'yu geçici olarak kapat/aç (toggle)
