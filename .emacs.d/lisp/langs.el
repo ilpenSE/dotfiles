@@ -121,3 +121,18 @@
 (add-hook 'typescript-ts-mode-hook 'eglot-ensure)
 (add-hook 'tsx-ts-mode-hook 'eglot-ensure)
 (add-hook 'html-mode-hook 'eglot-ensure)
+
+;; other files (helpers/configs) major mode packages
+(use-package toml-mode ;; .toml
+  :ensure t)
+
+(use-package dotenv-mode ;; .env or .env.*
+  :mode "\\.env\\.*\\'"
+  :config
+  (font-lock-add-keywords
+   'dotenv-mode
+   '(("^\\([A-Z_]+\\)=" 1 font-lock-variable-name-face))))
+
+(use-package git-modes ;; gitignore, gitconfig, gitattributes
+  :ensure t)
+
