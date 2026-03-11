@@ -83,17 +83,27 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+# PATH entries
+local -a USER_PATHS=(
+  "$HOME/Qt/6.10.2/gcc_64/bin"
+  "$HOME/.local/share/ij-idea/bin"
+  "$HOME/apache-maven-3.9.12/bin"
+  "$HOME/.local/bin"
+  "$HOME/.bun/bin"
+  "$HOME/.local/msvc-wine/bin/x64"
+)
+
 export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
 export LANG=tr_TR.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='nvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
+fi
 
 # Compilation flags
 export ARCHFLAGS="-arch $(uname -m)"
@@ -121,15 +131,15 @@ alias ..="cd .."
 alias .="cd ."
 
 # SSH agent
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_ed25519
+eval "$(ssh-agent -s)" > /dev/null 2>&1
+ssh-add ~/.ssh/id_ed25519 > /dev/null 2>&1
 
 # Python environment activate function
-activate-env() {
-  local env="${1:-venv}"
-  local act="$HOME/$env/bin/activate"
-  [[ -f "$act" ]] || { echo "env yok: $env"; return 1; }
-  echo "Activating python environment in home: $env"
+activate-venv() {
+  local venv="${1:-venv}"
+  local act="$HOME/$venv/bin/activate"
+  [[ -f "$act" ]] || { echo "No such venv: $venv"; return 1; }
+  echo "Activating python venv in home: $venv"
   source "$act"
 }
 
@@ -150,8 +160,8 @@ cdlla() {
 # quick built-in password feeder into keepassxc
 kp() {
   local db="${1:-$HOME/ŞİFRELER.kdbx}"
-  [[ -f "$db" ]] || { echo "Böyle bir dosya yok: $db"; return 1; }
-  read -s "pw?Şifre (boş bırak = GUI): "
+  [[ -f "$db" ]] || { echo "No such file: $db"; return 1; }
+  read -s "pw?Password (empty = GUI): "
   echo
   if [[ -z "$pw" ]]; then
     keepassxc "$db" &
@@ -216,18 +226,10 @@ alias docker-set-permits="sudo chown -R ilpen:ilpen /home/ilpen/docker_data"
 alias psqlconn="psql \"postgresql://postgres:postgres@127.0.0.1:54322/postgres\""
 alias psqlrunq="PGPASSWORD=postgres psql -h 127.0.0.1 -p 54322 -U postgres -d postgres -f"
 
-# PATH entries
-local -a paths=(
-  "$HOME/Qt/6.10.2/gcc_64/bin"
-  "$HOME/.local/share/ij-idea/bin"
-  "$HOME/apache-maven-3.9.12/bin"
-  "$HOME/.local/bin"
-  "$HOME/.bun/bin"
-)
+# echo "${(j.,.)USER_PATHS}"
 
-for p in "${paths[@]}"; do
-  [[ -d "$p" ]] && PATH="$p:$PATH"
-done
+PATH="${(j.:.)USER_PATHS}:$PATH"
+source $HOME/.local/msvc-wine/bin/x64/msvcenv.sh > /dev/null 2>&1
 
 # fnm
 FNM_PATH="/home/ilpen/.local/share/fnm"
@@ -239,6 +241,6 @@ fi
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-activate-env
+activate-venv
 
 clear

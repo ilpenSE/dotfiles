@@ -70,7 +70,7 @@
 
 ;; special comment style hook
 (defun my-comment-style-hook ()
-  "Seçili satırlar veya imleç için uygun satır başı yorum karakteri ayarla."
+  "Comment or uncomment a region with proper comments"
   (cond
    ;; C, C++, Java etc
    ((or (eq major-mode 'c-mode)

@@ -33,6 +33,7 @@
                     :family "Iosevka"
                     :height 220 ; punto * 10
                     :weight 'regular)
+
 (cua-mode -1)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
@@ -50,10 +51,13 @@
       initial-buffer-choice "~/programming")
 
 ;;; colored compilation
-(require 'ansi-color)
-(defun my-compilation-colorize ()
-  (ansi-color-apply-on-region compilation-filter-start (point)))
-(add-hook 'compilation-filter-hook #'my-compilation-colorize)
+(use-package ansi-color
+  :ensure t
+  :config
+  (add-hook 'shell-mode-hook #'ansi-color-for-comint-mode-on)
+  (add-hook 'eshell-mode-hook #'ansi-color-for-comint-mode-on)
+  (add-hook 'term-mode-hook #'ansi-color-for-comint-mode-on)
+  (add-hook 'compilation-filter-hook #'ansi-color-apply-on-region))
 
 ;;; line numbers
 (line-number-mode t)
@@ -92,16 +96,16 @@
   (company-frontends '(company-preview-if-just-one-frontend))
   (company-backends '(company-dabbrev-code company-keywords company-files)))
 
-;; minibuf, find file etc. completion
-(require 'ido)
-(require 'smex)
-(ido-mode t)
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
-(setq ido-use-filename-at-point 'guess)
-(setq ido-create-new-buffer 'ask)
-(global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+;; vertico and marginalia is the best
+(use-package marginalia
+  :ensure t
+  :init
+  (marginalia-mode))
+
+(use-package vertico ;; vertical minibuffer
+  :ensure t
+  :init
+  (vertico-mode))
 
 (use-package orderless ;; smart search
   :ensure t
@@ -121,14 +125,17 @@
   :bind ("C-=" . er/expand-region))
 
 ;; yas config
-(require 'yasnippet)
-(yas-global-mode 1)
+(use-package yasnippet
+  :ensure
+  :config
+  (yas-global-mode 1))
 ;; for adding a new snippet: M-x yas-new-snippet or C-c C-n
 ;; and enter a name and a keyboard then after the comments type the code
 ;; Then press C-c C-c, if it asks the mode, you just say c-mode or smth that in which mode do you want to use
 ;; that snippet and then save the file
 
-(require 'magit)
+(use-package magit
+  :ensure t)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -138,7 +145,7 @@
  '(custom-safe-themes
    '("01a9797244146bbae39b18ef37e6f2ca5bebded90d9fe3a2f342a9e863aaa4fd" default))
  '(package-selected-packages
-   '(git-modes toml-mode smex dotenv-mode markdown-preview-mode company move-text expand-region gruber-darker-theme eglot exec-path-from-shell orderless lorem-ipsum flycheck yasnippet-snippets yasnippet multiple-cursors intel-hex-mode rust-mode haskell-mode markdown-mode cmake-mode magit)))
+   '(vertico marginalia git-modes toml-mode smex dotenv-mode markdown-preview-mode company move-text expand-region gruber-darker-theme eglot exec-path-from-shell orderless lorem-ipsum flycheck yasnippet-snippets yasnippet multiple-cursors intel-hex-mode rust-mode haskell-mode markdown-mode cmake-mode magit)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -50,7 +50,8 @@
    `("# *include\\(?:_next\\)?\\s-+\\(\\(<\\|\"\\).*\\(>\\|\"\\)\\)" . (1 font-lock-string-face))
    `("\\(?:enum\\|struct\\)\\s-+\\([a-zA-Z0-9_]+\\)" . (1 font-lock-type-face))
    `(,(regexp-opt (simpc-keywords) 'symbols) . font-lock-keyword-face)
-   `(,(regexp-opt (simpc-types) 'symbols) . font-lock-type-face)))
+   `(,(regexp-opt (simpc-types) 'symbols) . font-lock-type-face)
+   `("\\([a-zA-Z_][a-zA-Z0-9_]*\\)\\s-*(" (1 font-lock-function-name-face))))
 
 (defun simpc--previous-non-empty-line ()
   "Returns either NIL when there is no such line or a pair (line . indentation)"
@@ -122,7 +123,12 @@
   "Simple major mode for editing C files."
   :syntax-table simpc-mode-syntax-table
   (setq-local font-lock-defaults '(simpc-font-lock-keywords))
-  (setq-local indent-line-function 'simpc-indent-line)
-  (setq-local comment-start "// "))
+  (c-initialize-cc-mode t)
+  (c-init-language-vars-for 'c-mode)
+  (c-common-init 'c-mode)
+  (setq-local indent-line-function 'c-indent-line)
+  ;(setq-local indent-line-function 'simpc-indent-line)
+  (setq-local comment-start "// ")
+  (setq-local comment-end ""))
 
 (provide 'simpc-mode)
