@@ -52,12 +52,10 @@
 
 ;;; colored compilation
 (use-package ansi-color
-  :ensure t
-  :config
-  (add-hook 'shell-mode-hook #'ansi-color-for-comint-mode-on)
-  (add-hook 'eshell-mode-hook #'ansi-color-for-comint-mode-on)
-  (add-hook 'term-mode-hook #'ansi-color-for-comint-mode-on)
-  (add-hook 'compilation-filter-hook #'ansi-color-apply-on-region))
+  :ensure t)
+(defun my-compilation-colorize ()
+  (ansi-color-apply-on-region compilation-filter-start (point)))
+(add-hook 'compilation-filter-hook #'my-compilation-colorize)
 
 ;;; line numbers
 (line-number-mode t)
@@ -145,7 +143,7 @@
  '(custom-safe-themes
    '("01a9797244146bbae39b18ef37e6f2ca5bebded90d9fe3a2f342a9e863aaa4fd" default))
  '(package-selected-packages
-   '(vertico marginalia git-modes toml-mode smex dotenv-mode markdown-preview-mode company move-text expand-region gruber-darker-theme eglot exec-path-from-shell orderless lorem-ipsum flycheck yasnippet-snippets yasnippet multiple-cursors intel-hex-mode rust-mode haskell-mode markdown-mode cmake-mode magit)))
+   '(yaml-mode vertico marginalia git-modes toml-mode smex dotenv-mode markdown-preview-mode company move-text expand-region gruber-darker-theme eglot exec-path-from-shell orderless lorem-ipsum flycheck yasnippet-snippets yasnippet multiple-cursors intel-hex-mode rust-mode haskell-mode markdown-mode cmake-mode magit)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
