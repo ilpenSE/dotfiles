@@ -2,7 +2,7 @@
 # /home/ilpen/.nvidia-settings-rc
 #
 # Configuration file for nvidia-settings - the NVIDIA Settings utility
-# Generated on Fri Mar  6 14:39:58 2026
+# Generated on Thu Mar 19 14:15:45 2026
 #
 
 # ConfigProperties:
@@ -13,9 +13,9 @@ SliderTextEntries = Yes
 IncludeDisplayNameInConfigFile = No
 ShowQuitDialog = Yes
 UpdateRulesOnProfileNameChange = Yes
-Timer = Memory_Used_(GPU_0),Yes,3000
-Timer = Thermal_Monitor_(GPU_0),Yes,1000
 Timer = PowerMizer_Monitor_(GPU_0),Yes,1000
+Timer = Thermal_Monitor_(GPU_0),Yes,1000
+Timer = Memory_Used_(GPU_0),Yes,3000
 
 # Attributes:
 
@@ -30,25 +30,55 @@ Timer = PowerMizer_Monitor_(GPU_0),Yes,1000
 0/OpenGLImageSettings=1
 0/FSAAAppEnhanced=0
 0/ShowGraphicsVisualIndicator=0
-[DPY:DVI-D-0]/Dithering=0
-[DPY:DVI-D-0]/DitheringMode=0
-[DPY:DVI-D-0]/DitheringDepth=0
-[DPY:DVI-D-0]/ColorSpace=0
-[DPY:DVI-D-0]/ColorRange=0
-[DPY:DVI-D-0]/SynchronousPaletteUpdates=0
-[DPY:HDMI-0]/RedBrightness=0.000000
-[DPY:HDMI-0]/GreenBrightness=0.000000
-[DPY:HDMI-0]/BlueBrightness=0.000000
-[DPY:HDMI-0]/RedContrast=0.000000
-[DPY:HDMI-0]/GreenContrast=0.000000
-[DPY:HDMI-0]/BlueContrast=0.000000
-[DPY:HDMI-0]/RedGamma=1.000000
-[DPY:HDMI-0]/GreenGamma=1.000000
-[DPY:HDMI-0]/BlueGamma=1.000000
+[DPY:DP-0]/Dithering=0
+[DPY:DP-0]/DitheringMode=0
+[DPY:DP-0]/DitheringDepth=0
+[DPY:DP-0]/ColorSpace=0
+[DPY:DP-0]/ColorRange=0
+[DPY:DP-0]/SynchronousPaletteUpdates=0
+[DPY:DP-1]/Dithering=0
+[DPY:DP-1]/DitheringMode=0
+[DPY:DP-1]/DitheringDepth=0
+[DPY:DP-1]/ColorSpace=0
+[DPY:DP-1]/ColorRange=0
+[DPY:DP-1]/SynchronousPaletteUpdates=0
+[DPY:DP-2]/Dithering=0
+[DPY:DP-2]/DitheringMode=0
+[DPY:DP-2]/DitheringDepth=0
+[DPY:DP-2]/ColorSpace=0
+[DPY:DP-2]/ColorRange=0
+[DPY:DP-2]/SynchronousPaletteUpdates=0
+[DPY:DP-3]/Dithering=0
+[DPY:DP-3]/DitheringMode=0
+[DPY:DP-3]/DitheringDepth=0
+[DPY:DP-3]/ColorSpace=0
+[DPY:DP-3]/ColorRange=0
+[DPY:DP-3]/SynchronousPaletteUpdates=0
 [DPY:HDMI-0]/Dithering=0
 [DPY:HDMI-0]/DitheringMode=0
 [DPY:HDMI-0]/DitheringDepth=0
-[DPY:HDMI-0]/DigitalVibrance=610
 [DPY:HDMI-0]/ColorSpace=0
 [DPY:HDMI-0]/ColorRange=0
 [DPY:HDMI-0]/SynchronousPaletteUpdates=0
+[DPY:DP-4]/RedBrightness=0.000000
+[DPY:DP-4]/GreenBrightness=0.000000
+[DPY:DP-4]/BlueBrightness=0.000000
+[DPY:DP-4]/RedContrast=0.000000
+[DPY:DP-4]/GreenContrast=0.000000
+[DPY:DP-4]/BlueContrast=0.000000
+[DPY:DP-4]/RedGamma=1.000000
+[DPY:DP-4]/GreenGamma=1.000000
+[DPY:DP-4]/BlueGamma=1.000000
+[DPY:DP-4]/Dithering=0
+[DPY:DP-4]/DitheringMode=0
+[DPY:DP-4]/DitheringDepth=0
+[DPY:DP-4]/DigitalVibrance=536
+[DPY:DP-4]/ColorSpace=0
+[DPY:DP-4]/ColorRange=0
+[DPY:DP-4]/SynchronousPaletteUpdates=0
+[DPY:DP-5]/Dithering=0
+[DPY:DP-5]/DitheringMode=0
+[DPY:DP-5]/DitheringDepth=0
+[DPY:DP-5]/ColorSpace=0
+[DPY:DP-5]/ColorRange=0
+[DPY:DP-5]/SynchronousPaletteUpdates=0

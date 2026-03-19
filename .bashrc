@@ -132,7 +132,13 @@ USER_PATHS=(
   "$HOME/.local/bin"
   "$HOME/.bun/bin"
   "$HOME/.local/msvc-wine/bin/x64"
+  "$HOME/.local/go/bin"
+  "$HOME/.local/osxcross/bin"
+  "$HOME/.local/llvm-mingw/bin"
 )
+
+export LD_LIBRARY_PATH=$HOME/.local/osxcross/lib:$LD_LIBRARY_PATH
+export MANPATH="/usr/local/man:$MANPATH"
 
 # Python environment activate function
 activate-venv() {
