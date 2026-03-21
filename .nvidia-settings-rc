@@ -2,7 +2,7 @@
 # /home/ilpen/.nvidia-settings-rc
 #
 # Configuration file for nvidia-settings - the NVIDIA Settings utility
-# Generated on Thu Mar 19 14:15:45 2026
+# Generated on Fri Mar 20 08:59:39 2026
 #
 
 # ConfigProperties:
@@ -11,7 +11,6 @@ RcFileLocale = C
 DisplayStatusBar = Yes
 SliderTextEntries = Yes
 IncludeDisplayNameInConfigFile = No
-ShowQuitDialog = Yes
 UpdateRulesOnProfileNameChange = Yes
 Timer = PowerMizer_Monitor_(GPU_0),Yes,1000
 Timer = Thermal_Monitor_(GPU_0),Yes,1000
@@ -72,7 +71,7 @@ Timer = Memory_Used_(GPU_0),Yes,3000
 [DPY:DP-4]/Dithering=0
 [DPY:DP-4]/DitheringMode=0
 [DPY:DP-4]/DitheringDepth=0
-[DPY:DP-4]/DigitalVibrance=536
+[DPY:DP-4]/DigitalVibrance=624
 [DPY:DP-4]/ColorSpace=0
 [DPY:DP-4]/ColorRange=0
 [DPY:DP-4]/SynchronousPaletteUpdates=0
@@ -82,3 +81,4 @@ Timer = Memory_Used_(GPU_0),Yes,3000
 [DPY:DP-5]/ColorSpace=0
 [DPY:DP-5]/ColorRange=0
 [DPY:DP-5]/SynchronousPaletteUpdates=0
+[GPU:0]/GPUPowerMizerMode=0

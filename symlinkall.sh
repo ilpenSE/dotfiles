@@ -1,6 +1,7 @@
 #!/usr/bin/bash
 # Symlinks all the config files to the proper locations on home folder
 # ADD FILES HERE: (RELATIVE FOR $HOME/dotfiles, NO ABSOLUTE PATH)
+
 files=(
   ".emacs.d/lisp"
   ".emacs.d/snippets"
@@ -8,14 +9,15 @@ files=(
   ".emacs.d/init.el"
   "emacs_guide.txt"
   ".bashrc"
+  "startup.sh"
   ".zshrc"
-  ".xprofile"
-  ".dmrc"
   ".p10k.zsh"
   ".nvidia-settings-rc"
   ".config/nvim/init.lua"
-  ".config/xfce4/terminal/terminalrc"
-  ".config/flameshot/flameshot.ini"
+  ".config/kwinrc"
+  ".gtkrc-2.0"
+  ".config/gf2_config.ini"
+  ".config/dolphinrc"
 )
 
 # Is verbose checking

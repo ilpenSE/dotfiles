@@ -30,9 +30,10 @@
 
 ;;; visuals
 (set-face-attribute 'default nil
-                    :family "Iosevka"
-                    :height 220 ; punto * 10
-                    :weight 'regular)
+                    :family "Iosevka Fixed"
+                    :height 220
+                    :weight 'regular
+                    :width 'normal)
 
 (cua-mode -1)
 (menu-bar-mode -1)
@@ -124,7 +125,7 @@
 
 ;; yas config
 (use-package yasnippet
-  :ensure
+  :ensure t
   :config
   (yas-global-mode 1))
 ;; for adding a new snippet: M-x yas-new-snippet or C-c C-n

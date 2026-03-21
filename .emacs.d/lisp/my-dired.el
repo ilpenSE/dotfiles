@@ -8,6 +8,18 @@
 ;; wdired can change permissions
 (setq wdired-allow-to-change-permissions t)
 
+(defface my-dired-executable-face
+  '((t (:foreground "aqua" :weight bold)))
+  "Face used for executable files in Dired."
+  :group 'dired-faces)
+
+(defun my-dired-highlight-executables ()
+  "Highlight ONLY the filename of executable files in Dired."
+  (font-lock-add-keywords
+   nil
+   '(( "^..[-rwx]*x[-rwx]*x[-rwx]*x[[:space:]]+.*[[:space:]]+\\(.+\\)$" 
+       (1 'my-dired-executable-face t)))))
+
 ;; for is dired shows ls hidden files?
 (defvar-local my-dired-show-hidden nil)
 ;; toggler func
@@ -19,10 +31,12 @@
                   "-lah"
                 "-lh"))
   (revert-buffer nil t))
+
 (add-hook 'dired-mode-hook
           (lambda ()
             (setq my-dired-show-hidden nil)
             (setq-local dired-actual-switches dired-listing-switches)))
+(add-hook 'dired-mode-hook 'my-dired-highlight-executables)
 
 (defun my-dired ()
   (interactive)
@@ -30,5 +44,3 @@
 (with-eval-after-load 'dired
   (define-key dired-mode-map (kbd ".") 'my-dired-toggle-hidden)
   (define-key dired-mode-map (kbd "E") 'wdired-change-to-wdired-mode))
-
-(global-set-key (kbd "C-x d") 'my-dired)

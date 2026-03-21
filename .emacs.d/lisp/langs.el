@@ -35,9 +35,6 @@
     (goto-char (point-min))
     (forward-line (1- line))
     (move-to-column col)))
-(add-hook 'simpc-mode-hook
-          (lambda ()
-            (local-set-key (kbd "C-c C-f") #'astyle-buffer)))
 
 ;;; indent / tabs
 (setq-default indent-tabs-mode nil)
