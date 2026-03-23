@@ -28,6 +28,8 @@ C-x b -> buffera geç (isim gir)
 C-x 4 b -> C-x b gibi isim sorup bufferı yeni bir split windowta açar
 C-x k -> isim sorarak bir bufferı öldür
 C-x <right/left arrow> -> Bufferlar arasında geçiş yapar (sol/sağ)
+C-s: ileri doğru (cursor'dan aşağıya) ara
+C-r: geriye doğru (cursor'dan yukarıya) ara
 
 Kelime/Satır Silme: (AVY Mode)
 TAB -> indent yapar
@@ -41,7 +43,7 @@ M-v -> bi önceki sayfa (yukarıya doğru PageUp)
 C-k -> o line içinde cursordan sağa doğru her şeyi sil (satır sonunda değilse \n'i silmez)
 M-d -> ileriye doğru kelime siler (C-backspace'in ileri versiyonu)
 M-k -> ileriye doğru regionı siler (boş satıra gelene dek)
-M-ü -> cursorın konumu değiştirmeden mevcut satırı kopyalar aşağıya doğru
+M-- -> cursorın konumu değiştirmeden mevcut satırı kopyalar aşağıya doğru
 C-S-Backspace -> satırı direkt siler (\n'ı da dahil)
 M-@ -> imleçten sonraki kelimeyi marklar (imlecin konumu değişmez)
 C-e -> satır sonuna git
@@ -50,7 +52,15 @@ C-SPC -> marklamaya başla
 M-E (M-S-e) -> satır sonuna kadar markla
 C-g veya SPC -> markı bitir
 NOT: avy modeda region marklıysa o regionda bir şeyler yazıp override edemezsin
- yani önce o region'ı silip sonra yazman lazım yoksa yazı, imlecin oraya gider. 
+ yani önce o region'ı silip sonra yazman lazım yoksa yazı, imlecin oraya gider.
+
+M-t: kelime swap'la
+M-^: delete indent, indentleri kapat (şu tarz şeyleri kompakt hale getir:
+     void some_func(size_t var1,
+                    int var2);
+->
+     void some_func(size_t var1, int var2);
+)
 
 M-u: kelimeyi uppercase yapar
 M-l: kelimeyi lowercase yapar
