@@ -90,13 +90,9 @@ local -a USER_PATHS=(
   "$HOME/apache-maven-3.9.12/bin"
   "$HOME/.local/bin"
   "$HOME/.bun/bin"
-  "$HOME/.local/msvc-wine/bin/x64"
   "$HOME/.local/go/bin"
-  "$HOME/.local/osxcross/bin"
-  "$HOME/.local/llvm-mingw/bin"
 )
 
-export LD_LIBRARY_PATH="$HOME/.local/osxcross/lib:$LD_LIBRARY_PATH"
 export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -230,10 +226,9 @@ alias docker-set-permits="sudo chown -R ilpen:ilpen /home/ilpen/docker_data"
 alias psqlconn="psql \"postgresql://postgres:postgres@127.0.0.1:54322/postgres\""
 alias psqlrunq="PGPASSWORD=postgres psql -h 127.0.0.1 -p 54322 -U postgres -d postgres -f"
 
-# echo "${(j.,.)USER_PATHS}"
-
 PATH="${(j.:.)USER_PATHS}:$PATH"
-source $HOME/.local/msvc-wine/bin/x64/msvcenv.sh > /dev/null 2>&1
+
+source setup_cc
 
 # fnm
 FNM_PATH="/home/ilpen/.local/share/fnm"

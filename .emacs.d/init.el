@@ -142,9 +142,16 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("01a9797244146bbae39b18ef37e6f2ca5bebded90d9fe3a2f342a9e863aaa4fd" default))
+   '("01a9797244146bbae39b18ef37e6f2ca5bebded90d9fe3a2f342a9e863aaa4fd"
+     default))
  '(package-selected-packages
-   '(go-mode yaml-mode vertico marginalia git-modes toml-mode smex dotenv-mode markdown-preview-mode company move-text expand-region gruber-darker-theme eglot exec-path-from-shell orderless lorem-ipsum flycheck yasnippet-snippets yasnippet multiple-cursors intel-hex-mode rust-mode haskell-mode markdown-mode cmake-mode magit)))
+   '(cmake-mode company dotenv-mode eglot exec-path-from-shell
+                expand-region flycheck git-commit git-modes go-mode
+                gruber-darker-theme haskell-mode intel-hex-mode
+                lorem-ipsum magit marginalia markdown-mode
+                markdown-preview-mode move-text multiple-cursors
+                orderless rust-mode smex toml-mode vertico yaml-mode
+                yasnippet yasnippet-snippets)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

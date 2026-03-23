@@ -131,13 +131,9 @@ USER_PATHS=(
   "$HOME/apache-maven-3.9.12/bin"
   "$HOME/.local/bin"
   "$HOME/.bun/bin"
-  "$HOME/.local/msvc-wine/bin/x64"
   "$HOME/.local/go/bin"
-  "$HOME/.local/osxcross/bin"
-  "$HOME/.local/llvm-mingw/bin"
 )
 
-export LD_LIBRARY_PATH=$HOME/.local/osxcross/lib:$LD_LIBRARY_PATH
 export MANPATH="/usr/local/man:$MANPATH"
 
 # Python environment activate function
@@ -237,7 +233,8 @@ alias psqlconn="psql \"postgresql://postgres:postgres@127.0.0.1:54322/postgres\"
 alias psqlrunq="PGPASSWORD=postgres psql -h 127.0.0.1 -p 54322 -U postgres -d postgres -f"
 
 PATH="$(IFS=:; echo "${USER_PATHS[*]}"):$PATH"
-source $HOME/.local/msvc-wine/bin/x64/msvcenv.sh
+
+source setup_cc
 
 # if bun causes problems, uncomment this
 # export BUN_INSTALL="$HOME/.bun"

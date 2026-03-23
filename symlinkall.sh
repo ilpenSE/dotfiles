@@ -18,6 +18,8 @@ files=(
   ".gtkrc-2.0"
   ".config/gf2_config.ini"
   ".config/dolphinrc"
+  ".local/bin/setup_cc.sh"
+  ".local/bin/setup_cc"
 )
 
 # Is verbose checking
