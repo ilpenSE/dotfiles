@@ -9,29 +9,33 @@ BASH_RST="\e[0m"
 
 setup_cc_msvc_for() {
   case $1 in
-    x64 | x86 | arm64)
+    x64 | x86 | arm64 | aarch64 | x86_64 | x86-64)
       ;;
     *)
       echo -e "$BASH_RED[ERROR]$BASH_RSTUnsupported platform for MSVC."
-      echo "Supported: x64, x86 and arm64"
+      echo "Supported: x64, x86 and arm64/aarch64"
       echo -e "Use: $BASH_GOLD$0 x64$BASH_RST for x86-64 MSVC"
       ;;
   esac
-  PATH="$HOME/.local/msvc-wine/bin/$1:$PATH"
-  source msvcenv.sh
+  local bindir="$HOME/.local/msvc-wine/bin/$1"
+  export PATH="$bindir:$PATH"
+  source "$bindir/msvcenv.sh"
+  echo "Current cl path: $(command -v cl)"
 }
 
 setup_cc_mingw() {
-  PATH="$HOME/.local/llvm-mingw/bin:$PATH"
+  export PATH="$HOME/.local/llvm-mingw/bin:$PATH"
 }
 
 setup_cc_osx() {
-  LD_LIBRARY_PATH=$HOME/.local/osxcross/lib:$LD_LIBRARY_PATH
-  PATH="$HOME/.local/osxcross/bin:$PATH"
+  export LD_LIBRARY_PATH=$HOME/.local/osxcross/lib:$LD_LIBRARY_PATH
+  export PATH="$HOME/.local/osxcross/bin:$PATH"
 }
 
 setup_cc() {
   case $1 in
+    linux)
+      ;; # nothing to do
     msvc | windows)
       setup_cc_msvc_for $2
       ;;

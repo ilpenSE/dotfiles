@@ -20,6 +20,9 @@ files=(
   ".config/dolphinrc"
   ".local/bin/setup_cc.sh"
   ".local/bin/setup_cc"
+  ".tmux.conf"
+  ".config/alacritty"
+  ".config/btop"
 )
 
 # Is verbose checking
