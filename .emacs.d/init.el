@@ -147,11 +147,12 @@
  '(package-selected-packages
    '(cmake-mode company dotenv-mode eglot exec-path-from-shell
                 expand-region flycheck git-commit git-modes go-mode
-                gruber-darker-theme haskell-mode intel-hex-mode
-                lorem-ipsum magit marginalia markdown-mode
-                markdown-preview-mode move-text multiple-cursors
-                orderless rust-mode smex toml-mode vertico yaml-mode
-                yasnippet yasnippet-snippets)))
+                gruber-darker-theme haskell-mode iasm-mode
+                intel-hex-mode lorem-ipsum magit marginalia
+                markdown-mode markdown-preview-mode move-text
+                multiple-cursors nasm-mode orderless rust-mode smex
+                toml-mode vertico yaml-mode yasnippet
+                yasnippet-snippets)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

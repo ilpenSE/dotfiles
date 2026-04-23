@@ -20,7 +20,6 @@ setup_cc_msvc_for() {
   local bindir="$HOME/.local/msvc-wine/bin/$1"
   export PATH="$bindir:$PATH"
   source "$bindir/msvcenv.sh"
-  echo "Current cl path: $(command -v cl)"
 }
 
 setup_cc_mingw() {

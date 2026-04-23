@@ -19,6 +19,9 @@
 (require 'simpc-mode)
 (add-to-list 'auto-mode-alist '("\\.[hc]\\(pp\\)?\\'" . simpc-mode))
 
+;; fasm mode
+(require 'fasm-mode)
+
 (defun astyle-buffer ()
   (interactive)
   (let ((line (line-number-at-pos))
