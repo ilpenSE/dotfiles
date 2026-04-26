@@ -4,7 +4,7 @@ This config files are meant to be work on my machine
 
 ## Requirements
 
-<img width="1920" height="1080" alt="Ekran Görüntüsü_20260321_135551" src="https://github.com/user-attachments/assets/74977502-c3f4-4fde-8d25-3f6317d5e535" />
+<img width="1920" height="1080" alt="dotfiles" src="https://github.com/user-attachments/assets/4cdf08a2-189c-40d3-9377-1cf41efc8c81" />
 
 - Arch Linux x86-64
 - Kernel 6.19.8-zen1-1-zen
