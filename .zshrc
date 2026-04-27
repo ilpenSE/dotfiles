@@ -158,3 +158,40 @@ fi
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 activate-venv > /dev/null 2>&1
+
+# Echoes ID of the distro
+# For example: in arch linux it'll print "arch"
+distro_name() {
+  source /etc/os-release
+  echo "$ID"
+}
+
+# Autoremove functions for arch linux.
+# Equivalent to: sudo apt autoremove
+pacman-autoremove() {
+  if [[ "$(distro_name)" =~ ^arch ]]; then
+    local orphans
+    orphans=$(pacman -Qdtq)
+
+    if [[ -n $orphans ]]; then
+      sudo pacman -Rns $orphans
+    else
+      echo "No orphan package."
+    fi
+  else
+    echo "Your distro does not have pacman"
+  fi
+}
+
+yay-autoremove() {
+  if [[ $(which yay 2>&1 > /dev/null && echo "$?") == 0 ]]; then
+    yay -Yc
+  else
+    echo "You don't have yay installed"
+  fi
+}
+
+all-autoremove() {
+  pacman-autoremove
+  yay-autoremove
+}

@@ -217,3 +217,33 @@ if [ -d "$FNM_PATH" ]; then
   eval "`fnm env`"
 fi
 
+# Echoes ID of the distro
+# For example: in arch linux it'll print "arch"
+distro_name() {
+  source /etc/os-release
+  echo "$ID"
+}
+
+# Autoremove functions for arch linux.
+# Equivalent to: sudo apt autoremove
+pacman-autoremove() {
+  if [[ "$(distro_name)" =~ ^arch ]]; then
+    orphans=$(pacman -Qdtq)
+    [ -n "$orphans" ] && sudo pacman -Rns $orphans || echo "No orphan package."
+  else
+    echo "Your distro does not have pacman"
+  fi
+}
+
+yay-autoremove() {
+  if [[ $(which yay 2>&1 > /dev/null && echo "$?") == 0 ]]; then
+    yay -Yc
+  else
+    echo "You don't have yay installed"
+  fi
+}
+
+all-autoremove() {
+  pacman-autoremove
+  yay-autoremove
+}
