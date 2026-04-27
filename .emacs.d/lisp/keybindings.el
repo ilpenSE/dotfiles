@@ -40,3 +40,11 @@
 
 (global-set-key (kbd "C-z") #'undo)
 (global-set-key (kbd "C-S-z") #'undo-redo)
+
+(defun align-by-backslashes (start end)
+  (interactive "r")
+  (if (use-region-p)
+      (align-regexp start end "\\(\\s-*\\)\\\\")
+    (message "No region was selected")))
+
+(global-set-key (kbd "C-c -") #'align-by-backslashes)

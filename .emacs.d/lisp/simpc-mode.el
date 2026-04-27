@@ -123,11 +123,7 @@
   "Simple major mode for editing C files."
   :syntax-table simpc-mode-syntax-table
   (setq-local font-lock-defaults '(simpc-font-lock-keywords))
-  (c-initialize-cc-mode t)
-  (c-init-language-vars-for 'c-mode)
-  (c-common-init 'c-mode)
-  (setq-local indent-line-function 'c-indent-line)
-  ;(setq-local indent-line-function 'simpc-indent-line)
+  (setq-local indent-line-function 'simpc-indent-line)
   (setq-local comment-start "// ")
   (setq-local comment-end ""))
 
