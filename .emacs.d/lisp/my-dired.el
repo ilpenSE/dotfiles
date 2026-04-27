@@ -25,6 +25,10 @@
             (setq my-dired-show-hidden nil)
             (setq-local dired-actual-switches dired-listing-switches)))
 
+;; enable auto revert for dired
+(add-hook 'dired-mode-hook #'auto-revert-mode)
+(setq global-auto-revert-non-file-buffers t)
+
 (defun my-dired ()
   (interactive)
   (dired default-directory))

@@ -1,0 +1,21 @@
+# -*- mode: snippet -*-
+# name: stbh
+# key: stbh
+# expand-env: ((yas-indent-line 'fixed))
+# --
+`"#"`ifndef $1_H
+`"#"`define $1_H
+
+`"#"`ifdef __cplusplus
+  `"#"`define $1DEF extern "C"
+`"#"`else
+  `"#"`define $1DEF extern
+`"#"`endif
+
+$0
+
+`"#"`ifdef $1_IMPLEMENTATION
+
+`"#"`endif // $1_IMPLEMENTATION
+
+`"#"`endif // $1_H

@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: sb
+# key: sb
+# expand-env: ((yas-indent-line 'fixed))
+# --
+`"#"`!/bin/bash
+
+$0

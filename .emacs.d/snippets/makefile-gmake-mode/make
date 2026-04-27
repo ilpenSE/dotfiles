@@ -1,0 +1,30 @@
+# -*- mode: snippet -*-
+# name: make
+# key: make
+# expand-env: ((yas-indent-line 'fixed))
+# --
+CC = gcc
+CFLAGS = -Wall -Wextra
+
+BUILD = build
+TARGET = $(BUILD)/$1
+SRC = $2
+
+ifeq ($(debug),1)
+	CFLAGS += -ggdb -O0
+else
+	CFLAGS += -O2
+endif
+
+all: $(TARGET) $(BUILD)
+
+$(BUILD):
+	mkdir -p $(BUILD)
+
+$(TARGET): $(SRC) | $(BUILD)
+	$(CC) $(CFLAGS) -o $(TARGET) $(SRC)
+
+clean:
+	rm -rf $(BUILD)
+
+.PHONY: all clean

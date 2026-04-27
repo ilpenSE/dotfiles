@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: stmacro
+# key: stmacro
+# expand-env: ((yas-indent-line 'fixed))
+# --
+`"#"`define $1 \
+  do { \
+    $0
+  } while (0)

@@ -103,6 +103,12 @@
 (add-hook 'python-mode-hook 'my-comment-style-hook)
 (add-hook 'sql-mode-hook 'my-comment-style-hook)
 
+;; enable auto revert for these languages:
+(add-hook 'c-mode-hook #'auto-revert-mode)
+(add-hook 'c++-mode-hook #'auto-revert-mode)
+(add-hook 'sql-mode-hook #'auto-revert-mode)
+(add-hook 'python-mode-hook #'auto-revert-mode)
+
 (add-hook 'markdown-mode-hook (lambda () (eldoc-mode -1)))
 
 ;;; ts/js linter/autocomplete

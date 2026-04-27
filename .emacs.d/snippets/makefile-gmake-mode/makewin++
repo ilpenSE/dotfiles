@@ -1,0 +1,31 @@
+# -*- mode: snippet -*-
+# name: makewin++
+# key: makewin++
+# expand-env: ((yas-indent-line 'fixed))
+# --
+CXX = cl
+
+BUILD = build
+CXXFLAGS = /W4 /D_CRT_SECURE_NO_WARNINGS /Fo"$(BUILD)\\"
+
+TARGET = $(BUILD)\$1
+SRC = $2
+
+!IF "$(debug)"=="1"
+CXXFLAGS=$(CXXFLAGS) /Zi /Od
+!ELSE
+CXXFLAGS=$(CXXFLAGS) /O2
+!ENDIF
+
+all: $(TARGET) $(BUILD)
+
+$(BUILD):
+	if not exist $(BUILD) mkdir $(BUILD)
+
+$(TARGET): $(SRC) $(BUILD)
+	$(CXX) $(CXXFLAGS) /Fe:$(TARGET) $(SRC)
+
+clean:
+	rmdir /S /Q $(BUILD)
+
+.PHONY: all clean

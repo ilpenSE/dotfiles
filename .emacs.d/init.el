@@ -41,6 +41,8 @@
 (global-font-lock-mode 1)
 (electric-indent-mode -1)
 
+(setq auto-revert-use-notify t)
+(setq auto-revert-verbose nil)
 (setq ring-bell-function 'ignore)
 
 ;;; startup
@@ -68,7 +70,7 @@
 (setq auto-save-file-name-transforms
       '((".*" "~/.emacs.d/autosaves/" t)))
 
-;;; abbrev config
+;; disable abbrev
 (setq-default abbrev-mode nil)
 (add-hook 'after-change-major-mode-hook
           (lambda ()
@@ -134,27 +136,13 @@
 (use-package magit
   :ensure t)
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   '("01a9797244146bbae39b18ef37e6f2ca5bebded90d9fe3a2f342a9e863aaa4fd"
-     default))
- '(package-selected-packages
-   '(cmake-mode company dotenv-mode eglot exec-path-from-shell
-                expand-region flycheck git-commit git-modes go-mode
-                gruber-darker-theme haskell-mode iasm-mode
-                intel-hex-mode lorem-ipsum magit marginalia
-                markdown-mode markdown-preview-mode move-text
-                multiple-cursors nasm-mode orderless rust-mode smex
-                toml-mode vertico yaml-mode yasnippet
-                yasnippet-snippets)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-(put 'downcase-region 'disabled nil)
+;; will set custom file to <emacs directory>/custom.el (by default: ~/.emacs.d/custom.el)
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+
+; create custom file if not exists
+(unless (file-exists-p custom-file)
+  (with-temp-buffer (write-file custom-file)))
+
+; load custom file
+(when (file-exists-p custom-file)
+  (load custom-file))
