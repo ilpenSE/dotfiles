@@ -12,8 +12,6 @@
 
 (package-initialize)
 
-;;; =========== PACKAGES ==========
-
 ; loading other lisp files
 (add-to-list 'load-path "~/.emacs.d/lisp")
 (load "langs")
