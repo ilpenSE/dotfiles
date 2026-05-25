@@ -27,9 +27,9 @@
 (scroll-bar-mode -1)
 (global-whitespace-mode 0)
 (electric-indent-mode -1)
-(setq auto-revert-verbose nil)
-(setq ring-bell-function 'ignore)
-(setq inhibit-startup-screen t
+(setq auto-revert-verbose nil
+      ring-bell-function 'ignore
+      inhibit-startup-screen t
       inhibit-startup-message t
       initial-scratch-message nil
       initial-buffer-choice "~/programming")
@@ -41,14 +41,14 @@
 ;; Enabled
 (global-subword-mode 1)
 (global-font-lock-mode 1)
-(setq auto-revert-use-notify t)
 (line-number-mode t)
 (column-number-mode t)
-(setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode 1)
-(setq vc-follow-symlinks t)
-(setq global-auto-revert-non-file-buffers t)
-(setq wdired-allow-to-change-permissions t)
+(setq auto-revert-use-notify t
+      display-line-numbers-type 'relative
+      vc-follow-symlinks t
+      global-auto-revert-non-file-buffers t
+      wdired-allow-to-change-permissions t)
 
 ;;; colored compilation
 (use-package ansi-color
@@ -113,7 +113,10 @@
 ;; that snippet and then save the file
 
 (use-package magit
-  :ensure t)
+  :ensure t
+  :config
+  (add-hook 'server-visit-hook 'git-commit-setup)
+  (add-hook 'git-commit-setup-hook 'magit-commit-diff))
 
 ;; will set custom file to <emacs directory>/custom.el (by default: ~/.emacs.d/custom.el)
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
