@@ -12,8 +12,8 @@
                 gruber-darker-theme haskell-mode iasm-mode ini-mode
                 intel-hex-mode lorem-ipsum magit marginalia
                 markdown-mode markdown-preview-mode move-text
-                multiple-cursors nasm-mode orderless rust-mode smex
-                toml-mode vertico yaml-mode yasnippet
+                multiple-cursors nasm-mode orderless page-break-lines
+                rust-mode smex toml-mode vertico yaml-mode yasnippet
                 yasnippet-snippets)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

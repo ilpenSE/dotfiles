@@ -98,6 +98,16 @@
   :config
   (exec-path-from-shell-copy-env "PATH"))
 
+(use-package page-break-lines
+  :ensure t
+  :config
+  (global-page-break-lines-mode)
+  :hook (find-file . (lambda () ; auto enable this when buffer contains ^L
+                       (when (save-excursion
+                               (goto-char (point-min))
+                               (search-forward "\f" nil t))
+                         (page-break-lines-mode 1)))))
+
 (use-package expand-region
   :ensure t
   :bind ("C-=" . er/expand-region))
