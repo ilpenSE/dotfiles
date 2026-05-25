@@ -30,7 +30,7 @@
           (lambda ()
             (local-set-key (kbd "C-c C-f") #'astyle-buffer)))
 
-(global-set-key (kbd "C-x d") 'my-dired)
+(global-set-key (kbd "C-x d") 'default-dired)
 
 (global-set-key (kbd "<f5>") #'compile)
 (global-set-key (kbd "<f6>") #'recompile)

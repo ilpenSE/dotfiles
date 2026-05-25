@@ -81,6 +81,7 @@ Dired:
 ^ -> diredde geri gel (.. işlevi)
 C-x d -> diredi açar
 d -> seçili dosya/klasörü deletion request'lerine atar
+s -> date'e göre sırala (tekrar basınca name'e göre sıralar)
 x -> deletion request'leri direkt siler
 + -> yeni klasör oluştur
 S-d (D) -> direkt siler, requestsiz (yes/no soruyor ama)

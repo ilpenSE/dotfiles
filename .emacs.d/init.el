@@ -1,24 +1,11 @@
-;;; melpa
+;;; Package utils
 (require 'package)
-
-; disable package sign logic
 (setq package-check-signature nil)
-
-; gnu packages
 (setq package-archives
       '(("melpa" . "https://melpa.org/packages/")
         ("gnu"   . "https://elpa.gnu.org/packages/")
         ("org"   . "https://orgmode.org/elpa/")))
-
 (package-initialize)
-
-; loading other lisp files
-(add-to-list 'load-path "~/.emacs.d/lisp")
-(load "langs")
-(load "my-dired")
-(load "keybindings")
-(load "mc")
-(load "simpc-mode")
 
 ;;; theme package
 (use-package gruber-darker-theme
@@ -28,28 +15,40 @@
 
 ;;; visuals
 (set-face-attribute 'default nil
-                    :family "Iosevka Fixed"
+                    :family "Iosevka"
                     :height 220
                     :weight 'regular
                     :width 'normal)
 
+;; Disabled
 (cua-mode -1)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
-(global-subword-mode 1)
-(global-font-lock-mode 1)
+(global-whitespace-mode 0)
 (electric-indent-mode -1)
-
-(setq auto-revert-use-notify t)
 (setq auto-revert-verbose nil)
 (setq ring-bell-function 'ignore)
-
-;;; startup
 (setq inhibit-startup-screen t
       inhibit-startup-message t
       initial-scratch-message nil
       initial-buffer-choice "~/programming")
+(setq-default abbrev-mode nil)
+(add-hook 'after-change-major-mode-hook
+          (lambda ()
+            (abbrev-mode -1)))
+
+;; Enabled
+(global-subword-mode 1)
+(global-font-lock-mode 1)
+(setq auto-revert-use-notify t)
+(line-number-mode t)
+(column-number-mode t)
+(setq display-line-numbers-type 'relative)
+(global-display-line-numbers-mode 1)
+(setq vc-follow-symlinks t)
+(setq global-auto-revert-non-file-buffers t)
+(setq wdired-allow-to-change-permissions t)
 
 ;;; colored compilation
 (use-package ansi-color
@@ -58,31 +57,11 @@
   (ansi-color-apply-on-region compilation-filter-start (point)))
 (add-hook 'compilation-filter-hook #'my-compilation-colorize)
 
-;;; line numbers
-(line-number-mode t)
-(column-number-mode t)
-(setq display-line-numbers-type 'relative)
-(global-display-line-numbers-mode 1)
-
 ;;; change backup and autosaves dir
 (setq backup-directory-alist
       '(("." . "~/.emacs.d/backups")))
 (setq auto-save-file-name-transforms
       '((".*" "~/.emacs.d/autosaves/" t)))
-
-;; disable abbrev
-(setq-default abbrev-mode nil)
-(add-hook 'after-change-major-mode-hook
-          (lambda ()
-            (abbrev-mode -1)))
-
-;; whitespace mode, doesnt show newlines
-(global-whitespace-mode 1)
-(setq whitespace-style
-      '(face tabs spaces tab-mark space-mark))
-
-;; always follow symlinks
-(setq vc-follow-symlinks t)
 
 ;; company
 (use-package company
@@ -146,3 +125,11 @@
 ; load custom file
 (when (file-exists-p custom-file)
   (load custom-file))
+
+;;; loading other lisp files
+(add-to-list 'load-path "~/.emacs.d/lisp")
+(load "langs")
+(load "my-dired")
+(load "keybindings")
+(load "mc")
+(load "simpc-mode")

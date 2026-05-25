@@ -9,7 +9,7 @@
  '(package-selected-packages
    '(cmake-mode company dotenv-mode eglot exec-path-from-shell
                 expand-region flycheck git-commit git-modes go-mode
-                gruber-darker-theme haskell-mode iasm-mode
+                gruber-darker-theme haskell-mode iasm-mode ini-mode
                 intel-hex-mode lorem-ipsum magit marginalia
                 markdown-mode markdown-preview-mode move-text
                 multiple-cursors nasm-mode orderless rust-mode smex

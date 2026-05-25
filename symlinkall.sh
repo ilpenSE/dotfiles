@@ -15,13 +15,11 @@ files=(
   ".p10k.zsh"
   ".nvidia-settings-rc"
   ".config/nvim/init.lua"
-  ".config/kwinrc"
+  ".config/flameshot/flameshot.ini"
   ".gtkrc-2.0"
   ".config/gf2_config.ini"
-  ".config/dolphinrc"
   ".local/bin/setup_cc"
   ".tmux.conf"
-  ".config/alacritty"
   ".config/btop"
 )
 

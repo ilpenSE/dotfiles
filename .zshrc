@@ -46,6 +46,7 @@ alias just-reboot="sudo reboot now"
 alias clang-cl="clang --driver-mode=cl"
 alias ..="cd .."
 alias .="cd ."
+alias biosfw="sudo systemctl reboot --firmware-setup"
 
 # SSH agent
 eval "$(ssh-agent -s)" > /dev/null 2>&1

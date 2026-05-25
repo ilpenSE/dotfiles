@@ -14,6 +14,7 @@
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js-ts-mode))
 
 (add-to-list 'auto-mode-alist '("\\Makefile.win\\'" . makefile-gmake-mode))
+(add-to-list 'auto-mode-alist '("\\.theme\\'" . sh-mode))
 
 ;; simpc mode
 (require 'simpc-mode)
@@ -47,6 +48,9 @@
 
 (add-hook 'prog-mode-hook
           (lambda ()
+            (setq-local whitespace-style
+                  '(face tabs spaces tab-mark space-mark))
+            (whitespace-mode 1)
             (setq indent-tabs-mode nil)))
 
 ;; since makefiles require proper tabs, we provide it
