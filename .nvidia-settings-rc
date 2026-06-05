@@ -2,7 +2,7 @@
 # /home/ilpen/.nvidia-settings-rc
 #
 # Configuration file for nvidia-settings - the NVIDIA Settings utility
-# Generated on Sun May 24 23:00:26 2026
+# Generated on Fri Jun  5 16:52:00 2026
 #
 
 # ConfigProperties:
@@ -28,6 +28,10 @@ Timer = Memory_Used_(GPU_0),Yes,3000
 0/LogAnisoAppControlled=1
 0/OpenGLImageSettings=1
 0/FSAAAppEnhanced=0
+0/AllowGSYNC=1
+0/AllowVRR=1
+0/ShowGSYNCVisualIndicator=0
+0/ShowVRRVisualIndicator=0
 0/ShowGraphicsVisualIndicator=0
 [DPY:DP-0]/Dithering=0
 [DPY:DP-0]/DitheringMode=0
