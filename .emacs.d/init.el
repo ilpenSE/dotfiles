@@ -7,6 +7,8 @@
         ("org"   . "https://orgmode.org/elpa/")))
 (package-initialize)
 
+(set-language-environment "English")
+
 ;;; theme package
 (use-package gruber-darker-theme
   :ensure t
