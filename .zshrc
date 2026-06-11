@@ -47,6 +47,7 @@ alias clang-cl="clang --driver-mode=cl"
 alias ..="cd .."
 alias .="cd ."
 alias biosfw="sudo systemctl reboot --firmware-setup"
+alias wine="WINEDEBUG=-all LIBGL_ALWAYS_SOFTWARE=1 wine"
 
 # SSH agent
 eval "$(ssh-agent -s)" > /dev/null 2>&1
