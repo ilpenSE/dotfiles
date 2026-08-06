@@ -7,12 +7,20 @@ Rows=1
 CommandAllKey=Alt
 CommandAllWheel=Maximize/Restore
 
+[Plugins]
+blurEnabled=false
+wobblywindowsEnabled=true
+
+[TabBox]
+DelayTime=0
+
+[Tiling][016496ab-e6eb-4f78-a1c1-700451506b8e][]
+padding=4
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
 [Tiling][016496ab-e6eb-4f78-a1c1-700451506b8e][e1cc6ffa-966e-4c17-a345-e072412be281]
 padding=4
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
 [Xwayland]
 Scale=1
-
-[TabBox]
-DelayTime=0

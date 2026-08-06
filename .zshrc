@@ -44,10 +44,12 @@ alias c="clear"
 alias just-shutdown="sudo shutdown now"
 alias just-reboot="sudo reboot now"
 alias clang-cl="clang --driver-mode=cl"
+alias x86_64-w64-mingw32-clang="clang --target=x86_64-w64-mingw32"
 alias ..="cd .."
 alias .="cd ."
 alias biosfw="sudo systemctl reboot --firmware-setup"
-alias wine="WINEDEBUG=-all LIBGL_ALWAYS_SOFTWARE=1 wine"
+alias wine="MESA_DEBUG=silent EGL_LOG_LEVEL=fatal wine"
+export WINEPATH="/usr/x86_64-w64-mingw32/bin"
 
 # SSH agent
 eval "$(ssh-agent -s)" > /dev/null 2>&1
@@ -141,6 +143,11 @@ UZ() {
   esac
 }
 
+# Local to Google Drive:
+# rclone sync ~/Drive gdrive:
+# Google Drive to Local:
+# rclone sync gdrive: ~/Drive
+alias mount-gdrive="rclone mount gdrive: ~/Drive --vfs-cache-mode writes --poll-interval 0"
 alias docker-set-permits="sudo chown -R ilpen:ilpen /home/ilpen/docker_data"
 alias psqlconn="psql \"postgresql://postgres:postgres@127.0.0.1:54322/postgres\""
 alias psqlrunq="PGPASSWORD=postgres psql -h 127.0.0.1 -p 54322 -U postgres -d postgres -f"

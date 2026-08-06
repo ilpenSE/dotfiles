@@ -14,7 +14,7 @@ files=(
   ".zshrc"
   ".p10k.zsh"
   ".nvidia-settings-rc"
-  ".config/nvim/init.lua"
+  ".config/nvim"
   ".config/flameshot/flameshot.ini"
   ".config/gf2_config.ini"
   ".config/kwinrc"

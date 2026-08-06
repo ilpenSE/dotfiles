@@ -39,6 +39,7 @@
 (add-hook 'after-change-major-mode-hook
           (lambda ()
             (abbrev-mode -1)))
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; Enabled
 (global-subword-mode 1)
