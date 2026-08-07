@@ -101,6 +101,69 @@
   :config
   (exec-path-from-shell-copy-env "PATH"))
 
+(defun setup-cc--source-env (script)
+  (with-temp-buffer
+    (call-process
+     "bash" nil t nil
+     "-c"
+     (format "source %s >/dev/null 2>&1 && env -0"
+             (shell-quote-argument script)))
+
+    (goto-char (point-min))
+    (while (search-forward "\0" nil t)
+      (let ((line (buffer-substring-no-properties
+                   (save-excursion
+                     (goto-char (1- (point)))
+                     (search-backward "\0" nil t)
+                     (if (looking-at "\0") (forward-char))
+                     (point))
+                   (1- (point)))))
+        (when (string-match "^\\([^=]+\\)=\\(.*\\)$" line)
+          (let ((var (match-string 1 line))
+                (val (match-string 2 line)))
+            (setenv var val)
+            (when (string= var "PATH")
+              (setq exec-path (parse-colon-path val)))))))))
+
+;; Cross compilation setup
+(defvar setup-cc-root (expand-file-name "~/.local"))
+
+(defun setup-cc--prepend-path (dir)
+  (setenv "PATH" (concat dir path-separator (getenv "PATH")))
+  (add-to-list 'exec-path dir))
+
+(defun setup-cc--prepend-ld (dir)
+  (setenv "LD_LIBRARY_PATH"
+          (concat dir path-separator (or (getenv "LD_LIBRARY_PATH") ""))))
+
+(defun setup-cc-linux ()
+  (interactive)
+  (message "Native Linux toolchain enabled."))
+
+(defun setup-cc-mingw ()
+  (interactive)
+  (setup-cc--prepend-path
+   (expand-file-name "llvm-mingw/bin" setup-cc-root))
+  (setup-cc--prepend-ld
+   (expand-file-name "llvm-mingw/lib" setup-cc-root))
+  (message "llvm-mingw enabled."))
+
+(defun setup-cc-osx ()
+  (interactive)
+  (setup-cc--prepend-path (expand-file-name "osxcross/bin" setup-cc-root))
+  (setup-cc--prepend-ld (expand-file-name   "osxcross/lib" setup-cc-root))
+  (message "osxcross enabled."))
+
+(defun setup-cc-msvc (arch)
+  (interactive
+   (list (completing-read "Architecture: "
+                          '("x64" "x86" "arm64"))))
+  (setup-cc--prepend-path (expand-file-name "msvc-wine/bin" setup-cc-root))
+  (setup-cc--source-env
+   (expand-file-name
+    (format "msvc-wine/bin/%s/msvcenv.sh" arch)
+    setup-cc-root)))
+
 (use-package page-break-lines
   :ensure t
   :config
