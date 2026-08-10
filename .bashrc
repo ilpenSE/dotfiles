@@ -56,8 +56,8 @@ esac
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
 
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
@@ -67,6 +67,34 @@ fi
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 export LC_ALL="en_US.UTF-8"
+
+export MANROFFOPT="-c"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
+export LESS_TERMCAP_mb=$'\e[01;31m'  # Blink (Red)
+export LESS_TERMCAP_md=$'\e[01;34m'  # Bold/Headers (Blue)
+export LESS_TERMCAP_me=$'\e[0m'     # Reset
+export LESS_TERMCAP_so=$'\e[01;33m' # Standout/Prompt (Yellow)
+export LESS_TERMCAP_se=$'\e[0m'     # Reset Standout
+export LESS_TERMCAP_us=$'\e[04;32m' # Underline (Green)
+export LESS_TERMCAP_ue=$'\e[0m'     # Reset Underline
+
+alias ls='eza -al --color=always --group-directories-first --icons=always' # preferred listing
+alias la='eza -a --color=always --group-directories-first --icons=always'  # all files and dirs
+alias ll='eza -l --color=always --group-directories-first --icons=always'  # long format
+alias lt='eza -aT --color=always --group-directories-first --icons=always' # tree listing
+alias l.="eza -a | grep -e '^\.'"                                          # show only dotfiles
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias psmem='ps auxf | sort -nr -k 4'
+alias psmem10='ps auxf | sort -nr -k 4 | head -10'
+alias hw='hwinfo --short'
+alias jctl='journalctl -p 3 -xb'
+alias mirror='sudo cachyos-rate-mirrors'
+alias grep='grep --color=auto'
+alias tb="nc termbin.com 9999"
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -83,16 +111,11 @@ if ! shopt -oq posix; then
   fi
 fi
 
-alias la="ls -ah"
-alias ll="ls -lh"
-alias lla="ls -lah"
 alias c="clear"
 alias just-shutdown="sudo shutdown now"
 alias just-reboot="sudo reboot now"
 alias clang-cl="clang --driver-mode=cl"
 alias x86_64-w64-mingw32-clang="clang --target=x86_64-w64-mingw32"
-alias ..="cd .."
-alias .="cd ."
 alias biosfw="sudo systemctl reboot --firmware-setup"
 alias wine="MESA_DEBUG=silent EGL_LOG_LEVEL=fatal wine"
 export WINEPATH="/usr/x86_64-w64-mingw32/bin"
@@ -102,12 +125,9 @@ ssh-add ~/.ssh/id_ed25519 > /dev/null 2>&1
 
 # User-defined paths, will be added to PATH
 USER_PATHS=(
-  "$HOME/Qt/6.10.2/gcc_64/bin"
   "$HOME/.local/share/ij-idea/bin"
   "$HOME/apache-maven-3.9.12/bin"
   "$HOME/.local/bin"
-  "$HOME/.bun/bin"
-  "$HOME/.local/go/bin"
 )
 
 export MANPATH="/usr/local/man:$MANPATH"
@@ -136,29 +156,6 @@ cdla() {
 
 cdlla() {
   cd "$@" && ls -lah
-}
-
-# quick built-in password feeder into keepassxc
-kp() {
-  local db="${1:-$HOME/ŞİFRELER.kdbx}"
-  [[ -f "$db" ]] || { echo "No such file: $db"; return 1; }
-  read -s -p "Password (empty = GUI): " pw
-  echo
-  if [[ -z "$pw" ]]; then
-    keepassxc "$db" &
-  else
-    printf '%s' "$pw" | keepassxc --pw-stdin "$db" &
-  fi
-}
-
-# "cmake" command for windows x86_64 environment
-# it is not cmake --build, just the initializer
-cmakewin() {
-  cmake \
-    -DCMAKE_SYSTEM_NAME=Windows \
-    -DCMAKE_C_COMPILER=x86_64-w64-mingw32-gcc \
-    -DCMAKE_CXX_COMPILER=x86_64-w64-mingw32-g++ \
-    "$@"
 }
 
 UZ() {
@@ -217,16 +214,6 @@ PATH="$(IFS=:; echo "${USER_PATHS[*]}"):$PATH"
 
 source setup_cc > /dev/null 2>&1
 
-# if bun causes problems, uncomment this
-# export BUN_INSTALL="$HOME/.bun"
-
-# fnm
-FNM_PATH="$HOME/.local/share/fnm"
-if [ -d "$FNM_PATH" ]; then
-  export PATH="$FNM_PATH:$PATH"
-  eval "`fnm env`"
-fi
-
 # Echoes ID of the distro
 # For example: in arch linux it'll print "arch"
 distro_name() {
@@ -237,7 +224,7 @@ distro_name() {
 # Autoremove functions for arch linux.
 # Equivalent to: sudo apt autoremove
 pacman-autoremove() {
-  if [[ "$(distro_name)" =~ ^arch ]]; then
+  if [[ "$(distro_name)" =~ ^(arch|cachyos) ]]; then
     orphans=$(pacman -Qdtq)
     [ -n "$orphans" ] && sudo pacman -Rns $orphans || echo "No orphan package."
   else

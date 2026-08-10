@@ -2,7 +2,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-export ZSH="$HOME/.oh-my-zsh"
+export ZSH="/usr/share/oh-my-zsh"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 export ZSH_COMPDUMP="${XDG_CACHE_HOME:-$HOME/.cache}/zcompdump"
 
@@ -14,12 +14,9 @@ source $ZSH/oh-my-zsh.sh
 
 # PATH entries
 local -a USER_PATHS=(
-  "$HOME/Qt/6.10.2/gcc_64/bin"
   "$HOME/.local/share/ij-idea/bin"
   "$HOME/apache-maven-3.9.12/bin"
   "$HOME/.local/bin"
-  "$HOME/.bun/bin"
-  "$HOME/.local/go/bin"
 )
 
 export MANPATH="/usr/local/man:$MANPATH"
@@ -36,20 +33,50 @@ fi
 
 # Compilation flags
 export ARCHFLAGS="-arch $(uname -m)"
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-alias la="ls -ah"
-alias ll="ls -lh"
-alias lla="ls -lah"
+# Stolen from fish
+export MANROFFOPT="-c"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
+export LESS_TERMCAP_mb=$'\e[01;31m'  # Blink (Red)
+export LESS_TERMCAP_md=$'\e[01;34m'  # Bold/Headers (Blue)
+export LESS_TERMCAP_me=$'\e[0m'     # Reset
+export LESS_TERMCAP_so=$'\e[01;33m' # Standout/Prompt (Yellow)
+export LESS_TERMCAP_se=$'\e[0m'     # Reset Standout
+export LESS_TERMCAP_us=$'\e[04;32m' # Underline (Green)
+export LESS_TERMCAP_ue=$'\e[0m'     # Reset Underline
+
+# Stolen from fish
+alias ls='eza -al --color=always --group-directories-first --icons=always' # preferred listing
+alias la='eza -a --color=always --group-directories-first --icons=always'  # all files and dirs
+alias ll='eza -l --color=always --group-directories-first --icons=always'  # long format
+alias lt='eza -aT --color=always --group-directories-first --icons=always' # tree listing
+alias l.="eza -a | grep -e '^\.'"                                          # show only dotfiles
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias psmem='ps auxf | sort -nr -k 4'
+alias psmem10='ps auxf | sort -nr -k 4 | head -10'
+alias hw='hwinfo --short'
+alias jctl='journalctl -p 3 -xb'
+alias mirror='sudo cachyos-rate-mirrors'
+alias grep='grep --color=auto'
+alias tb="nc termbin.com 9999"
+
 alias c="clear"
 alias just-shutdown="sudo shutdown now"
 alias just-reboot="sudo reboot now"
 alias clang-cl="clang --driver-mode=cl"
 alias x86_64-w64-mingw32-clang="clang --target=x86_64-w64-mingw32"
-alias ..="cd .."
-alias .="cd ."
 alias biosfw="sudo systemctl reboot --firmware-setup"
 alias wine="MESA_DEBUG=silent EGL_LOG_LEVEL=fatal wine"
-export WINEPATH="/usr/x86_64-w64-mingw32/bin"
+export WINEPATH="/opt/llvm-mingw/x86_64-w64-mingw32/bin"
 
 # SSH agent
 eval "$(ssh-agent -s)" > /dev/null 2>&1
@@ -76,28 +103,6 @@ cdla() {
 }
 cdlla() {
   cd "$@" && ls -lah
-}
-
-# quick built-in password feeder into keepassxc
-kp() {
-  local db="${1:-$HOME/ŞİFRELER.kdbx}"
-  [[ -f "$db" ]] || { echo "No such file: $db"; return 1; }
-  read -s "pw?Password (empty = GUI): "
-  echo
-  if [[ -z "$pw" ]]; then
-    keepassxc "$db" &
-  else
-    printf '%s' "$pw" | keepassxc --pw-stdin "$db" &
-  fi
-}
-
-# "cmake" command for windows x86_64 environment
-cmakewin() {
-  cmake \
-    -DCMAKE_SYSTEM_NAME=Windows \
-    -DCMAKE_C_COMPILER=x86_64-w64-mingw32-gcc \
-    -DCMAKE_CXX_COMPILER=x86_64-w64-mingw32-g++ \
-    "$@"
 }
 
 UZ() {
@@ -156,16 +161,6 @@ PATH="${(j.:.)USER_PATHS}:$PATH"
 
 source setup_cc > /dev/null 2>&1
 
-# fnm
-FNM_PATH="/home/ilpen/.local/share/fnm"
-if [[ -d "$FNM_PATH" ]]; then
-  export PATH="$FNM_PATH:$PATH"
-  eval "$(fnm env)"
-fi
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 activate-venv > /dev/null 2>&1
 
 # Echoes ID of the distro
@@ -178,7 +173,7 @@ distro_name() {
 # Autoremove functions for arch linux.
 # Equivalent to: sudo apt autoremove
 pacman-autoremove() {
-  if [[ "$(distro_name)" =~ ^arch ]]; then
+  if [[ "$(distro_name)" =~ ^(arch|cachyos) ]]; then
     local orphans
     orphans=$(pacman -Qdtq)
 

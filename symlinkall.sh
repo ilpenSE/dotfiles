@@ -10,17 +10,12 @@ files=(
   "emacs_guide.txt"
   ".gitconfig"
   ".bashrc"
-  "startup.sh"
   ".zshrc"
   ".p10k.zsh"
-  ".nvidia-settings-rc"
-  ".config/nvim"
-  ".config/flameshot/flameshot.ini"
   ".config/gf2_config.ini"
-  ".config/kwinrc"
   ".local/bin/setup_cc"
   ".tmux.conf"
-  ".config/btop"
+  "startup.sh"
 )
 
 # Is verbose checking
@@ -34,7 +29,7 @@ for file in "${files[@]}"
 do
   if [[ ! -e $HOME/$file ]] && [[ ! -L $HOME/$file ]]; then
     $isVerbose && echo "Symlinking $file..." || true
-    ln -s $HOME/dotfiles/$file $HOME/$file && echo "Successfully symlinked $file"
+    ln -sf $HOME/dotfiles/$file $HOME/$file && echo "Successfully symlinked $file"
   else
     $isVerbose && echo "Skipping: $file" || true
   fi

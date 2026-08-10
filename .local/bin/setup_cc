@@ -1,7 +1,11 @@
 #!/bin/bash
 # Setup Cross-Compile utilities
 # Built for x86-64 Arch Linux
-# Assumes you have already installed llvm-mingw, osxcross and msvc-wine in .local
+# Assumes you have already installed llvm-mingw, osxcross and msvc-wine
+
+LLVM_MINGW_PATH="/opt/llvm-mingw"
+MSVC_WINE_PATH="/opt/msvc"
+OSXCROSS_PATH="/usr/local/osx-ndk-x86"
 
 BASH_RED="\e[1;31m"
 BASH_GOLD="\e[1;38;2;255;165;0m"
@@ -17,18 +21,18 @@ setup_cc_msvc_for() {
       echo -e "Use: $BASH_GOLD$0 x64$BASH_RST for x86-64 MSVC"
       ;;
   esac
-  local bindir="$HOME/.local/msvc-wine/bin/$1"
+  local bindir="$MSVC_WINE_PATH/bin/$1"
   export PATH="$bindir:$PATH"
   source "$bindir/msvcenv.sh"
 }
 
 setup_cc_mingw() {
-  export PATH="$HOME/.local/llvm-mingw/bin:$PATH"
+  export PATH="$LLVM_MINGW_PATH/bin:$PATH"
 }
 
 setup_cc_osx() {
-  export LD_LIBRARY_PATH=$HOME/.local/osxcross/lib:$LD_LIBRARY_PATH
-  export PATH="$HOME/.local/osxcross/bin:$PATH"
+  export LD_LIBRARY_PATH="$OSXCROSS_PATH/lib:$LD_LIBRARY_PATH"
+  export PATH="$OSXCROSS_PATH/bin:$PATH"
 }
 
 setup_cc() {
