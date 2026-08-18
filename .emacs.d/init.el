@@ -18,7 +18,7 @@
 ;;; visuals
 (set-face-attribute 'default nil
                     :family "Iosevka"
-                    :height 220
+                    :height 180
                     :weight 'regular
                     :width 'normal)
 

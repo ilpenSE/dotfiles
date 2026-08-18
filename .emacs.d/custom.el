@@ -9,9 +9,10 @@
  '(package-selected-packages
    '(avy cmake-font-lock cmake-mode cmake-project company
          exec-path-from-shell expand-region flycheck git-modes go-mode
-         gruber-darker-theme magit marginalia markdown-mode
-         markdown-preview-mode move-text multiple-cursors orderless
-         page-break-lines toml-mode vertico yasnippet)))
+         gruber-darker-theme hl-tags-mode magit marginalia
+         markdown-mode markdown-preview-mode move-text
+         multiple-cursors orderless origami page-break-lines toml-mode
+         vertico yasnippet)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

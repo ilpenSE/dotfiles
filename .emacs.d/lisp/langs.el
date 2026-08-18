@@ -146,3 +146,9 @@
 (use-package git-modes ;; gitignore, gitconfig, gitattributes
   :ensure t)
 
+(use-package origami
+  :hook (nxml-mode . origami-mode)
+  :bind (:map origami-mode-map
+              ("C-c o :" . origami-toggle-node)
+              ("C-c o a" . origami-open-all-nodes)
+              ("C-c o z" . origami-close-all-nodes)))

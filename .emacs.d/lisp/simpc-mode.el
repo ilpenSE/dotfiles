@@ -41,7 +41,7 @@
     "nullptr" "operator" "or" "or_eq" "private" "protected" "public" "reflexpr"
     "reinterpret_cast" "requires" "static_assert" "static_cast" "synchronized"
     "template" "this" "thread_local" "throw" "true" "try" "typeid" "typename"
-    "using" "virtual" "wchar_t" "xor" "xor_eq"))
+    "using" "virtual" "wchar_t" "xor" "xor_eq" "override"))
 
 (defun simpc-font-lock-keywords ()
   (list
