@@ -9,7 +9,6 @@ This config files are meant to be work on my machine
 - OS: CachyOS x86-64
 - DE: KDE Plasma
 - Text Editor: GNU Emacs
-- Terminal: Konsole
+- Terminal/Shell: Konsole/zsh
 - Browser: Mozilla Firefox
-- Greeter: SDDM
 - Working body, brain, computer, keyboard, mouse
