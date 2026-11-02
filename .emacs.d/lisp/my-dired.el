@@ -2,6 +2,7 @@
 (setq dired-listing-switches "-lah")
 (setq dired-use-ls-dired nil)
 (setq dired-kill-when-opening-new-dired-buffer t)
+(setq dired-dwim-target t)
 
 (add-hook 'dired-mode-hook
           (lambda ()

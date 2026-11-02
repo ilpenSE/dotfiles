@@ -1,4 +1,4 @@
-; https://raw.githubusercontent.com/rexim/simpc-mode/refs/heads/master/simpc-mode.el
+; https://raw.githubusercontent.com/rexim/simpc-mode/refs/heads/master/simpc-mode.el  -*- lexical-binding: t; -*-
 (require 'subr-x)
 
 (defvar simpc-mode-syntax-table

@@ -13,12 +13,23 @@
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js-ts-mode))
 
+(add-to-list 'auto-mode-alist '("\\.qrc\\'" . nxml-mode))
+
 (add-to-list 'auto-mode-alist '("\\Makefile.win\\'" . makefile-gmake-mode))
 (add-to-list 'auto-mode-alist '("\\.theme\\'" . sh-mode))
 
 ;; simpc mode
 (require 'simpc-mode)
-(add-to-list 'auto-mode-alist '("\\.[hc]\\(pp\\)?\\'" . simpc-mode))
+;; (add-to-list 'auto-mode-alist '("\\.[hc]\\(pp\\)?\\'" . simpc-mode))
+(setq major-mode-remap-alist
+      '((c-mode . c-ts-mode)
+        (c++-mode . c++-ts-mode)
+        (c-or-c++-mode . c-or-c++-ts-mode)))
+; stop shitty ass eglot's backend indentation
+(with-eval-after-load 'eglot
+  (add-to-list 'eglot-ignored-server-capabilities :documentFormattingProvider)
+  (add-to-list 'eglot-ignored-server-capabilities :documentRangeFormattingProvider)
+  (add-to-list 'eglot-ignored-server-capabilities :documentOnTypeFormattingProvider))
 
 ;; fasm mode
 (require 'fasm-mode)
@@ -78,7 +89,9 @@
   (cond
    ;; C, C++, Java etc
    ((or (eq major-mode 'c-mode)
+        (eq major-mode 'c-ts-mode)
         (eq major-mode 'c++-mode)
+        (eq major-mode 'c++-ts-mode)
         (eq major-mode 'rust-mode)
         (eq major-mode 'java-mode)
         (eq major-mode 'js-ts-mode)
@@ -99,7 +112,9 @@
 
 ;; add hooks for comment
 (add-hook 'c-mode-hook 'my-comment-style-hook)
+(add-hook 'c-ts-mode-hook 'my-comment-style-hook)
 (add-hook 'c++-mode-hook 'my-comment-style-hook)
+(add-hook 'c++-ts-mode-hook 'my-comment-style-hook)
 (add-hook 'rust-mode-hook 'my-comment-style-hook)
 (add-hook 'java-mode-hook 'my-comment-style-hook)
 (add-hook 'js-ts-mode-hook 'my-comment-style-hook)

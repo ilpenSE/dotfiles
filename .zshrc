@@ -76,7 +76,9 @@ alias clang-cl="clang --driver-mode=cl"
 alias x86_64-w64-mingw32-clang="clang --target=x86_64-w64-mingw32"
 alias biosfw="sudo systemctl reboot --firmware-setup"
 alias wine="MESA_DEBUG=silent EGL_LOG_LEVEL=fatal wine"
-export WINEPATH="/opt/llvm-mingw/x86_64-w64-mingw32/bin"
+alias goodbye-dpi-start="sudo systemctl start byedpi-start"
+alias goodbye-dpi-stop="sudo systemctl stop byedpi-start"
+export WINEPATH="/usr/x86_64-w64-mingw32/bin"
 
 # SSH agent
 eval "$(ssh-agent -s)" > /dev/null 2>&1
