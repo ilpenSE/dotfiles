@@ -8,12 +8,28 @@
 (package-initialize)
 
 (set-language-environment "English")
+(setenv "LANG" "en_US.UTF-8")
+(setenv "LC_ALL" "en_US.UTF-8")
+(setq shell-file-name "/bin/zsh"
+      explicit-shell-file-name "/bin/zsh")
+(setq system-messages-locale "en_US.UTF-8")
+(setq system-time-locale "en_US.UTF-8")
+(setq warning-minimum-level :emergency)
 
 ;;; theme package
 (use-package gruber-darker-theme
   :ensure t
   :config
   (load-theme 'gruber-darker t))
+
+;; Force compilation mode buffer to be bottom because
+;; some weird nerds at GNU decided to make compilation buffer to appear left
+(add-to-list 'display-buffer-alist
+             '("\\*compilation\\*"
+               (display-buffer-reuse-window display-buffer-in-side-window)
+               (side . bottom)
+               (slot . 0)
+               (window-height . 0.5)))
 
 ;;; visuals
 (set-face-attribute 'default nil
